@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Quote Generator</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <h1>Random Quote Generator</h1>
+
+        <div class="quote-box" id="quote-box">
+            <p class="quote" id="quote-text">
+                "{{ quote }}"
+            </p>
+            <h3 id="quote-author">- {{ author }}</h3>
+        </div>
+
+        <button id="new-quote-btn">Generate New Quote</button>
+        <div id="spinner" style="display:none; margin: 20px auto;">
+            <img src="https://i.imgur.com/llF5iyg.gif" alt="Loading..." width="40" height="40">
+        </div>
+
+        <div class="history" id="history">
+            <h2>Quote History</h2>
+            <div id="history-list">
+                {% for item in history %}
+                <div class="history-card">
+                    <p>{{ item[0] }}</p>
+                    <small>- {{ item[1] }}</small>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('new-quote-btn');
+        const quoteText = document.getElementById('quote-text');
+        const quoteAuthor = document.getElementById('quote-author');
+        const spinner = document.getElementById('spinner');
+        const historyList = document.getElementById('history-list');
+
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            spinner.style.display = 'block';
+            btn.disabled = true;
+            fetch('/quote')
+                .then(res => res.json())
+                .then(data => {
+                    quoteText.textContent = '"' + data.quote + '"';
+                    quoteAuthor.textContent = '- ' + data.author;
+                    // Update history
+                    historyList.innerHTML = '';
+                    data.history.forEach(function(item) {
+                        const card = document.createElement('div');
+                        card.className = 'history-card';
+                        card.innerHTML = `<p>${item[0]}</p><small>- ${item[1]}</small>`;
+                        historyList.appendChild(card);
+                    });
+                })
+                .catch(() => {
+                    quoteText.textContent = 'Could not fetch quote.';
+                    quoteAuthor.textContent = '- System';
+                })
+                .finally(() => {
+                    spinner.style.display = 'none';
+                    btn.disabled = false;
+                });
+        });
+    </script>
+
+</body>
+
+</html>

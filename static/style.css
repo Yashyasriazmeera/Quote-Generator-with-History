@@ -1,0 +1,80 @@
+body {
+    font-family: Arial;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.quote-box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.quote {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+button {
+    background: orange;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+button:hover {
+    background: darkorange;
+}
+
+.history {
+    margin-top: 40px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+.history-card {
+    background: rgba(255,255,255,0.8);
+    margin: 10px auto;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    width: 80%;
+    text-align: left;
+    transition: background 0.2s;
+}
+.history-card:hover {
+    background: #f0f8ff;
+}
+
+#spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 98%;
+        padding-top: 10px;
+    }
+    .quote-box {
+        padding: 15px;
+    }
+    .history-card {
+        width: 98%;
+        padding: 10px;
+    }
+}
