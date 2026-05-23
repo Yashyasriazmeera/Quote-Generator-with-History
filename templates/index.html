@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quote Generator with History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="quote-card">
+        <h1>Quote Generator</h1>
+        <p id="quote-text">Click “New Quote” to get inspired.</p>
+        <p id="quote-author"></p>
+        <button id="new-quote-btn" type="button">New Quote</button>
+      </section>
+
+      <section class="history-card">
+        <h2>Quote History</h2>
+        <ul id="history-list">
+          {% for item in history %}
+          <li>
+            <blockquote>{{ item.quote }}</blockquote>
+            <span>— {{ item.author }}</span>
+          </li>
+          {% else %}
+          <li class="empty-history">No quote history yet.</li>
+          {% endfor %}
+        </ul>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

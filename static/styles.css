@@ -1,0 +1,94 @@
+:root {
+  --bg: #0f172a;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --accent: #2563eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(160deg, #dbeafe 0%, #f8fafc 45%, #e2e8f0 100%);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+.quote-card,
+.history-card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
+}
+
+#quote-text {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  min-height: 4rem;
+}
+
+#quote-author {
+  color: var(--muted);
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+#new-quote-btn {
+  margin-top: 1rem;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#new-quote-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+#history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+#history-list li {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.75rem;
+}
+
+blockquote {
+  margin: 0 0 0.35rem;
+}
+
+.empty-history {
+  text-align: center;
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
